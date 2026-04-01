@@ -1,7 +1,8 @@
 export const NAV_LINKS = [
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Download", href: "#download" },
+  { label: "Features", href: "/#features" },
+  { label: "Preview", href: "/#preview" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Download", href: "/#download" },
 ];
 
 export type Feature = {

@@ -21,9 +21,10 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold text-gray-900 mb-3">Pages</h4>
             <ul className="space-y-2">
-              <li><a href="#hero" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">Home</a></li>
-              <li><a href="#features" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">Features</a></li>
-              <li><a href="#how-it-works" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">How It Works</a></li>
+              <li><Link href="/" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">Home</Link></li>
+              <li><Link href="/#features" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">Features</Link></li>
+              <li><Link href="/#preview" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">Preview</Link></li>
+              <li><Link href="/#how-it-works" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">How It Works</Link></li>
             </ul>
           </div>
 
@@ -40,8 +41,8 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold text-gray-900 mb-3">Download</h4>
             <ul className="space-y-2">
-              <li><a href="#download" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">iOS App</a></li>
-              <li><a href="#download" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">Android App</a></li>
+              <li><Link href="/#download" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">iOS App</Link></li>
+              <li><Link href="/#download" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">Android App</Link></li>
             </ul>
           </div>
         </div>

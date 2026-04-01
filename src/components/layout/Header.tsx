@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import LogoMark from "@/components/ui/LogoMark";
@@ -13,21 +14,21 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <LogoMark size={32} priority />
             <span className="text-lg font-bold text-gray-900">{"ChinaReady"}</span>
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-gray-500 hover:text-gray-900 text-sm font-medium transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -55,14 +56,14 @@ export default function Header() {
           <div className="md:hidden pb-4 border-t border-gray-100 mt-2">
             <nav className="flex flex-col gap-1 pt-3">
               {NAV_LINKS.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg text-sm font-medium"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <div className="mt-2 px-3">
                 <a
