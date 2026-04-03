@@ -1724,24 +1724,28 @@ export default function ChecklistPreview() {
                       </section>
                     ) : null}
 
-                    {(detailTutorial?.sections?.length
-                      ? detailTutorial.sections
-                      : [
-                          {
-                            title: "Quick steps",
-                            steps: (detailTutorial?.steps || []).map((step, index) => ({
-                              title: `Step ${index + 1}`,
-                              body: step,
-                            })),
-                          },
-                        ]
+                    {(
+                      (
+                        detailTutorial?.sections?.length
+                          ? detailTutorial.sections
+                          : [
+                              {
+                                title: "Quick steps",
+                                description: undefined,
+                                steps: (detailTutorial?.steps || []).map<TutorialStep>((step, index) => ({
+                                  title: `Step ${index + 1}`,
+                                  body: step,
+                                })),
+                              },
+                            ]
+                      ) as TutorialSection[]
                     ).map((section) => (
                       <section key={section.title} className="space-y-6">
                         <div className="border-b border-slate-100 pb-4">
                           <p className="text-2xl font-semibold tracking-tight text-slate-900">
                             {section.title}
                           </p>
-                          {section.description ? (
+                          {"description" in section && section.description ? (
                             <p className="mt-3 text-base leading-relaxed text-slate-500">
                               {section.description}
                             </p>
@@ -1842,7 +1846,7 @@ export default function ChecklistPreview() {
               Beyond setup, the app helps with food choices and practical tips from other travelers.
               {" "}
               <a
-                href="#download"
+                href="/coming-soon"
                 className="font-medium text-[#137fec] transition-colors hover:text-[#0f6fd1]"
               >
                 Download the app to try the full experience.

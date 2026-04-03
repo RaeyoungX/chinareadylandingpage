@@ -15,15 +15,15 @@ export default function LogoMark({
 }: LogoMarkProps) {
   return (
     <span
-      className={`inline-flex shrink-0 items-center justify-center rounded-lg bg-neutral-100 p-1 ring-1 ring-neutral-200/80 ${className}`}
+      className={`inline-flex shrink-0 items-center justify-center overflow-hidden rounded-lg ring-1 ring-slate-200/80 ${className}`}
       style={{ width: size, height: size }}
     >
       <Image
-        src="/images/chinaready-logo.png"
+        src="/icon.png"
         alt=""
         width={size}
         height={size}
-        className="h-full w-full rounded-md object-contain"
+        className="h-full w-full object-cover"
         priority={priority}
       />
     </span>

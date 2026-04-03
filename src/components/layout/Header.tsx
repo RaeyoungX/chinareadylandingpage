@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { NAV_LINKS } from "@/lib/constants";
+import { DOWNLOAD_PATH, NAV_LINKS } from "@/lib/constants";
 import LogoMark from "@/components/ui/LogoMark";
 
 export default function Header() {
@@ -34,12 +34,12 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <a
-              href="#download"
+            <Link
+              href={DOWNLOAD_PATH}
               className="inline-flex items-center px-5 py-2 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors"
             >
               Download App
-            </a>
+            </Link>
           </div>
 
           {/* Mobile hamburger */}
@@ -66,12 +66,12 @@ export default function Header() {
                 </Link>
               ))}
               <div className="mt-2 px-3">
-                <a
-                  href="#download"
+                <Link
+                  href={DOWNLOAD_PATH}
                   className="flex items-center justify-center w-full px-5 py-2 bg-gray-900 text-white text-sm font-medium rounded-full"
                 >
                   Download App
-                </a>
+                </Link>
               </div>
             </nav>
           </div>

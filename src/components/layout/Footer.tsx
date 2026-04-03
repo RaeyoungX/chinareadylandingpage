@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LogoMark from "@/components/ui/LogoMark";
+import { DOWNLOAD_PATH } from "@/lib/constants";
 
 export default function Footer() {
   return (
@@ -41,8 +42,8 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold text-gray-900 mb-3">Download</h4>
             <ul className="space-y-2">
-              <li><Link href="/#download" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">iOS App</Link></li>
-              <li><Link href="/#download" className="text-gray-400 hover:text-gray-600 text-xs transition-colors">Android App</Link></li>
+              <li><Link href={DOWNLOAD_PATH} className="text-gray-400 hover:text-gray-600 text-xs transition-colors">iOS App</Link></li>
+              <li><Link href={DOWNLOAD_PATH} className="text-gray-400 hover:text-gray-600 text-xs transition-colors">Android App</Link></li>
             </ul>
           </div>
         </div>

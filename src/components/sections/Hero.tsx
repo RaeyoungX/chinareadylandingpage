@@ -1,4 +1,6 @@
+import Link from "next/link";
 import PhoneMockup from "@/components/ui/PhoneMockup";
+import { DOWNLOAD_PATH } from "@/lib/constants";
 
 const heroScreens = {
   left: "/images/app-screenshot-hero.png",
@@ -39,12 +41,12 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="flex items-center justify-center gap-4 mb-16 sm:mb-20">
-          <a
-            href="#download"
+          <Link
+            href={DOWNLOAD_PATH}
             className="inline-flex items-center px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors"
           >
             Download For Free
-          </a>
+          </Link>
           <a
             href="#how-it-works"
             className="inline-flex items-center gap-2 px-6 py-3 text-gray-700 text-sm font-medium hover:text-gray-900 transition-colors"

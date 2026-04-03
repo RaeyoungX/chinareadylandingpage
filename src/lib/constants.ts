@@ -1,8 +1,10 @@
+export const DOWNLOAD_PATH = "/coming-soon";
+
 export const NAV_LINKS = [
   { label: "Features", href: "/#features" },
   { label: "Preview", href: "/#preview" },
   { label: "How It Works", href: "/#how-it-works" },
-  { label: "Download", href: "/#download" },
+  { label: "Download", href: DOWNLOAD_PATH },
 ];
 
 export type Feature = {
@@ -116,5 +118,5 @@ export const STEPS: Step[] = [
   },
 ];
 
-export const APP_STORE_URL = "#";
-export const GOOGLE_PLAY_URL = "#";
+export const APP_STORE_URL = DOWNLOAD_PATH;
+export const GOOGLE_PLAY_URL = DOWNLOAD_PATH;

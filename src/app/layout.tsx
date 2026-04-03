@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   title: "ChinaReady - Get Prepared Before You Land in China",
   description:
     "Your complete travel preparation app for China. Track your readiness score, set up payments, VPN, navigation and more before your trip.",
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    shortcut: ["/icon.png"],
+    apple: [{ url: "/icon.png" }],
+  },
   openGraph: {
     title: "ChinaReady - Travel Preparation App for China",
     description:
