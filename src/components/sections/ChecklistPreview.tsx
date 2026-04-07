@@ -1,13 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
+  BookOpen,
   Camera,
   Check,
   ChevronRight,
+  ClipboardList,
   CreditCard,
   FileText,
   Languages,
@@ -1290,7 +1293,128 @@ function countDone(items: ChecklistItem[]) {
   return items.filter((item) => item.done).length;
 }
 
+const visaFreeCountries: { name: string; days: number }[] = [
+  { name: "France", days: 30 }, { name: "Germany", days: 30 }, { name: "Italy", days: 30 },
+  { name: "Netherlands", days: 30 }, { name: "Spain", days: 30 }, { name: "Switzerland", days: 30 },
+  { name: "Ireland", days: 30 }, { name: "Hungary", days: 30 }, { name: "Austria", days: 30 },
+  { name: "Belgium", days: 30 }, { name: "Luxembourg", days: 30 }, { name: "Poland", days: 30 },
+  { name: "Slovenia", days: 30 }, { name: "Portugal", days: 30 }, { name: "Greece", days: 30 },
+  { name: "Cyprus", days: 30 }, { name: "Slovakia", days: 30 }, { name: "Norway", days: 30 },
+  { name: "Finland", days: 30 }, { name: "Denmark", days: 30 }, { name: "Iceland", days: 30 },
+  { name: "Andorra", days: 30 }, { name: "Monaco", days: 30 }, { name: "Liechtenstein", days: 30 },
+  { name: "Bulgaria", days: 30 }, { name: "Romania", days: 30 }, { name: "Croatia", days: 30 },
+  { name: "Montenegro", days: 30 }, { name: "North Macedonia", days: 30 }, { name: "Malta", days: 30 },
+  { name: "Estonia", days: 30 }, { name: "Latvia", days: 30 }, { name: "Russia", days: 30 },
+  { name: "Sweden", days: 30 }, { name: "United Kingdom", days: 30 }, { name: "Australia", days: 30 },
+  { name: "New Zealand", days: 30 }, { name: "South Korea", days: 30 }, { name: "Japan", days: 30 },
+  { name: "Brunei", days: 30 }, { name: "Saudi Arabia", days: 30 }, { name: "Oman", days: 30 },
+  { name: "Kuwait", days: 30 }, { name: "Bahrain", days: 30 }, { name: "Brazil", days: 30 },
+  { name: "Argentina", days: 30 }, { name: "Chile", days: 30 }, { name: "Peru", days: 30 },
+  { name: "Uruguay", days: 30 }, { name: "Canada", days: 30 },
+];
+
+const customsRules = [
+  { label: "Cash", value: "Declare if over USD 5,000 or equivalent" },
+  { label: "Alcohol", value: "1.5L of spirits per adult, duty-free" },
+  { label: "Tobacco", value: "400 cigarettes per adult, duty-free" },
+  { label: "Electronics", value: "Personal-use quantities — no declaration needed" },
+  { label: "Drones", value: "May require advance approval and declaration" },
+  { label: "Medications", value: "Bring a prescription for controlled substances" },
+  { label: "VPN apps", value: "Not a customs issue — restriction is on use, not possession" },
+];
+
+function RulesView() {
+  return (
+    <div className="divide-y divide-slate-100 bg-slate-50/50">
+
+      {/* Visa-free countries */}
+      <div className="px-5 py-6 sm:px-7">
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <h3 className="text-sm font-semibold text-slate-900">Visa-free entry</h3>
+          <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-600">
+            {visaFreeCountries.length} countries
+          </span>
+        </div>
+
+        <div className="flex flex-wrap gap-1.5">
+          {visaFreeCountries.map(({ name, days }) => (
+            <span
+              key={name}
+              className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-600"
+            >
+              {name}
+              <span className="text-[10px] font-semibold text-slate-400">{days}D</span>
+            </span>
+          ))}
+        </div>
+
+        <p className="mt-4 text-[11px] text-slate-400">
+          Source:{" "}
+          <a
+            href="https://ca.china-embassy.gov.cn/eng/zytz_0/202602/t20260217_11860807.htm"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-slate-600"
+          >
+            China Embassy notice · 2026-02-17
+          </a>{" "}
+          · Verify with your embassy before travel.
+        </p>
+      </div>
+
+      {/* Arrival documents */}
+      <div className="px-5 py-6 sm:px-7">
+        <h3 className="mb-4 text-sm font-semibold text-slate-900">Arrival documents</h3>
+        <div className="space-y-4">
+          {[
+            { label: "Arrival Card", desc: "Name, passport number, flight number, first accommodation address. Fill on the plane." },
+            { label: "Customs Declaration", desc: "Required for all. Declare cash over USD 5,000 and restricted items." },
+            { label: "Hotel address", desc: "Have a backup on paper or screenshot — officers may ask at the counter." },
+          ].map((item) => (
+            <div key={item.label} className="flex gap-3">
+              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300" />
+              <div>
+                <p className="text-xs font-semibold text-slate-700">{item.label}</p>
+                <p className="mt-0.5 text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-[11px] text-amber-600">
+          No confirmed address? Write your first hotel — you can change plans after entry.
+        </p>
+      </div>
+
+      {/* Customs limits */}
+      <div className="px-5 py-6 sm:px-7">
+        <h3 className="mb-4 text-sm font-semibold text-slate-900">Customs limits</h3>
+        <div className="space-y-2">
+          {customsRules.map(({ label, value }) => (
+            <div key={label} className="flex items-baseline gap-3">
+              <span className="w-20 shrink-0 text-[11px] font-semibold text-slate-400">{label}</span>
+              <span className="text-xs text-slate-600 leading-relaxed">{value}</span>
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-[11px] text-slate-400">
+          Source:{" "}
+          <a
+            href="http://english.customs.gov.cn/statics/88707c1e-aa4e-40ca-a968-bdbdbb565e4f.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-slate-600"
+          >
+            China Customs · Passenger Goods Regulations
+          </a>
+        </p>
+      </div>
+
+    </div>
+  );
+}
+
 export default function ChecklistPreview() {
+  const [activeTab, setActiveTab] = useState<"checklist" | "rules">("checklist");
   const [categories, setCategories] = useState(initialCategories);
   const [activeCategory, setActiveCategory] = useState<CategoryId>("Payments");
   const [detailItemId, setDetailItemId] = useState<string | null>(null);
@@ -1371,7 +1495,7 @@ export default function ChecklistPreview() {
         <div className="flex h-full flex-col">
           <div className="space-y-3">
             <p className={`leading-relaxed text-slate-500 ${compact ? "line-clamp-2 text-xs" : "line-clamp-2 text-sm"}`}>
-              Open the camera and read the important menu details fast.
+              Open the camera and quickly check ingredients, allergens, and spice level.
             </p>
 
             <div className={`space-y-3 ${compact ? "" : ""}`}>
@@ -1417,25 +1541,47 @@ export default function ChecklistPreview() {
               Browse quick traveler posts across different cities.
             </p>
 
-            <div className={`rounded-[1.4rem] bg-white shadow-sm ring-1 ring-slate-200 ${compact ? "p-3" : "p-4"}`}>
-              <div className="flex gap-3">
-                <div className={`flex shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-[#137fec] ${compact ? "h-9 w-9 text-xs font-semibold" : "h-10 w-10 text-sm font-semibold"}`}>
-                  I
-                </div>
-                <div className="min-w-0">
-                  <div className={`flex flex-wrap items-center gap-x-2 gap-y-1 ${compact ? "text-[11px]" : "text-sm"}`}>
-                    <span className="font-semibold text-slate-900">ind</span>
-                    <span className="text-slate-300">.</span>
-                    <span className="text-slate-400">United States</span>
+            <div className="space-y-3">
+              <div className={`rounded-[1.4rem] bg-white shadow-sm ring-1 ring-slate-200 ${compact ? "p-3" : "p-4"}`}>
+                <div className="flex gap-3">
+                  <div className={`flex shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-[#137fec] ${compact ? "h-9 w-9 text-xs font-semibold" : "h-10 w-10 text-sm font-semibold"}`}>
+                    I
                   </div>
+                  <div className="min-w-0">
+                    <div className={`flex flex-wrap items-center gap-x-2 gap-y-1 ${compact ? "text-[11px]" : "text-sm"}`}>
+                      <span className="font-semibold text-slate-900">ind</span>
+                      <span className="text-slate-300">·</span>
+                      <span className="text-slate-400">United States</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <p className={`font-semibold text-slate-900 ${compact ? "text-sm" : "text-base"}`}>Where I would actually eat in Shanghai</p>
+                  <p className={`mt-1.5 leading-relaxed text-slate-500 ${compact ? "line-clamp-2 text-[11px]" : "line-clamp-2 text-sm"}`}>
+                    If you only have a few real meals in Shanghai, I would save Dahuchun shengjian for you first.
+                  </p>
                 </div>
               </div>
 
-              <div className="mt-3">
-                <p className={`font-semibold text-slate-900 ${compact ? "text-sm" : "text-lg"}`}>Best food</p>
-                <p className={`mt-2 leading-relaxed text-slate-500 ${compact ? "line-clamp-2 text-[11px]" : "line-clamp-2 text-sm"}`}>
-                  Quick food tips with local context from people already there.
-                </p>
+              <div className={`rounded-[1.4rem] bg-white shadow-sm ring-1 ring-slate-200 ${compact ? "p-3" : "p-4"}`}>
+                <div className="flex gap-3">
+                  <div className={`flex shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-emerald-500 ${compact ? "h-9 w-9 text-xs font-semibold" : "h-10 w-10 text-sm font-semibold"}`}>
+                    M
+                  </div>
+                  <div className="min-w-0">
+                    <div className={`flex flex-wrap items-center gap-x-2 gap-y-1 ${compact ? "text-[11px]" : "text-sm"}`}>
+                      <span className="font-semibold text-slate-900">mia</span>
+                      <span className="text-slate-300">·</span>
+                      <span className="text-slate-400">Australia</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <p className={`font-semibold text-slate-900 ${compact ? "text-sm" : "text-base"}`}>eSIM that actually works</p>
+                  <p className={`mt-1.5 leading-relaxed text-slate-500 ${compact ? "line-clamp-2 text-[11px]" : "line-clamp-2 text-sm"}`}>
+                    Tested three options — only one had consistent 5G outside the city.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -1496,17 +1642,13 @@ export default function ChecklistPreview() {
   return (
     <section id="preview" className="min-h-[calc(100vh-4rem)] bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] px-4 py-8 sm:px-6 lg:px-10">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <p className="mb-3 text-sm font-medium text-slate-500">Preview</p>
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              See how ChinaReady works before you download
-            </h1>
-          </div>
-          <p className="max-w-xl text-sm leading-relaxed text-slate-500 sm:text-base">
-            In the app, you answer a short trip questionnaire first and get a personalized
-            checklist. This preview shows the general version, plus a few of the tools travelers
-            use most after they land.
+        <div className="mb-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Preview</p>
+          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+            See if you are ready for China
+          </h1>
+          <p className="mt-3 text-base text-slate-500 max-w-xl">
+            Work through the checklist below — built from real traveler experience and kept up to date.
           </p>
         </div>
 
@@ -1536,23 +1678,34 @@ export default function ChecklistPreview() {
             </div>
           </div>
 
-          {!detailItem ? (
+          {/* Tab bar */}
+          <div className="flex border-b border-slate-200/80 bg-white px-5">
+            {([
+              { id: "checklist", label: "Checklist", icon: ClipboardList },
+              { id: "rules", label: "Rules & Entry", icon: BookOpen },
+            ] as const).map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => {
+                  setActiveTab(tab.id);
+                  setDetailItemId(null);
+                }}
+                className={`flex items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium transition-colors ${
+                  activeTab === tab.id
+                    ? "border-slate-900 text-slate-900"
+                    : "border-transparent text-slate-400 hover:text-slate-600"
+                }`}
+              >
+                <tab.icon className="h-4 w-4" />
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {activeTab === "rules" ? <RulesView /> : !detailItem ? (
             <div className="p-5 sm:p-7">
               <div className="rounded-[1.75rem] bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.08)] ring-1 ring-slate-200">
-                <div className="mb-6">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                      Departure Brief
-                    </p>
-                    <h2 className="mt-3 text-4xl font-semibold leading-none tracking-tight text-slate-900">
-                      Your trip desk
-                    </h2>
-                    <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-500">
-                      A calmer view of what matters before you land in China.
-                    </p>
-                  </div>
-                </div>
-
                 <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
                   <div className="rounded-[1.3rem] border border-slate-200 bg-slate-50 p-5">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
@@ -1838,19 +1991,17 @@ export default function ChecklistPreview() {
 
         <div className="mt-10 space-y-5">
           <div className="max-w-2xl">
-            <p className="text-sm font-medium text-slate-500">More Than A Checklist</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              ChinaReady keeps helping after the prep work is done
+            <h2 className="text-2xl font-extrabold tracking-tight text-slate-900">
+              More in the app
             </h2>
-            <p className="mt-3 text-base leading-relaxed text-slate-500">
-              Beyond setup, the app helps with food choices and practical tips from other travelers.
-              {" "}
-              <a
-                href="/coming-soon"
+            <p className="mt-2 text-sm leading-relaxed text-slate-500">
+              Menu translator, traveler community, and offline quick-fixes.{" "}
+              <Link
+                href="/#waitlist"
                 className="font-medium text-[#137fec] transition-colors hover:text-[#0f6fd1]"
               >
-                Download the app to try the full experience.
-              </a>
+                Join the waitlist.
+              </Link>
             </p>
           </div>
 

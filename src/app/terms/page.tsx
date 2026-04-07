@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service - ChinaReady",
+  title: "Terms of Service",
+  description: "Terms and conditions for using the ChinaReady app and website.",
+  alternates: { canonical: "https://chinaready.org/terms" },
+  robots: { index: false },
 };
 
 export default function TermsPage() {

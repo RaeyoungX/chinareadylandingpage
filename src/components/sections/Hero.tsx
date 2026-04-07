@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PhoneMockup from "@/components/ui/PhoneMockup";
-import { DOWNLOAD_PATH } from "@/lib/constants";
+import { PREVIEW_PATH, WAITLIST_PATH } from "@/lib/constants";
 
 const heroScreens = {
   left: "/images/app-screenshot-hero.png",
@@ -10,85 +10,77 @@ const heroScreens = {
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative overflow-hidden bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24">
-        {/* Social proof badge */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-4 py-1.5">
-            <div className="flex -space-x-1.5">
-              {["bg-blue-400", "bg-green-400", "bg-purple-400"].map((c, i) => (
-                <div key={i} className={`w-5 h-5 rounded-full ${c} border-2 border-white`} />
-              ))}
-            </div>
-            <span className="text-xs text-gray-600 font-medium">Join travelers getting ready</span>
-            <span className="text-xs bg-gray-900 text-white px-2 py-0.5 rounded-full font-medium">Get Access</span>
+    <section id="hero" className="relative overflow-visible bg-white">
+      <div className="mx-auto max-w-6xl px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8 lg:pt-24">
+        <div className="mb-10 flex justify-center">
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="text-xs font-semibold tracking-wide text-slate-500">
+              Website preview live
+            </span>
+            <span className="h-3.5 w-px bg-slate-200" />
+            <span className="text-xs font-semibold text-slate-400">
+              App coming soon
+            </span>
           </div>
         </div>
 
-        {/* Headline */}
-        <div className="text-center max-w-3xl mx-auto mb-6">
-          <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-gray-900 leading-[1.15] tracking-tight">
-            Your Complete Guide to
-            <br />
-            Landing in China
+        <div className="mx-auto mb-6 max-w-4xl text-center">
+          <h1 className="text-5xl font-extrabold leading-[1.05] tracking-[-0.04em] text-slate-950 sm:text-6xl lg:text-[5.5rem]">
+            Everything travelers need before landing in China
           </h1>
         </div>
 
-        {/* Subtitle */}
-        <p className="text-center text-gray-500 text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
-          {"Don't just book your trip — prepare for it. ChinaReady tracks your readiness across documents, payments, VPN, and more."}
-        </p>
-
-        {/* CTAs */}
-        <div className="flex items-center justify-center gap-4 mb-16 sm:mb-20">
-          <Link
-            href={DOWNLOAD_PATH}
-            className="inline-flex items-center px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors"
-          >
-            Download For Free
-          </Link>
-          <a
-            href="#how-it-works"
-            className="inline-flex items-center gap-2 px-6 py-3 text-gray-700 text-sm font-medium hover:text-gray-900 transition-colors"
-          >
-            <span className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center">
-              <svg className="w-3 h-3 ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
-            </span>
-            Learn More
-          </a>
+        <div className="mx-auto mb-3 max-w-xl text-center">
+          <p className="text-lg leading-relaxed text-slate-500 sm:text-xl">
+            Built from official sources and real traveler experience.
+          </p>
         </div>
 
-        {/* Phone mockups */}
-        <div className="relative flex items-end justify-center gap-0 sm:gap-2 pb-0 -mb-4">
-          {/* Left phone - tilted */}
-          <div className="hidden sm:block -rotate-6 translate-y-8 translate-x-4 z-0 opacity-90">
-            <PhoneMockup
-              size="sm"
-              src={heroScreens.left}
-              alt="ChinaReady onboarding screen"
-            />
+        <div className="mx-auto mb-10 max-w-xl text-center">
+          <p className="text-sm text-slate-400">
+            Use the website now. The app is coming soon.
+          </p>
+        </div>
+
+        <div className="mb-16 flex flex-col items-center justify-center gap-4 sm:mb-20">
+          <Link
+            href={PREVIEW_PATH}
+            className="inline-flex items-center rounded-full bg-slate-950 px-7 py-3.5 text-sm font-medium text-white shadow-[0_18px_40px_rgba(15,23,42,0.16)] transition-all hover:-translate-y-0.5 hover:bg-slate-800"
+          >
+            Try the Web Preview
+          </Link>
+          <Link
+            href={WAITLIST_PATH}
+            className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
+          >
+            Join the waitlist
+          </Link>
+        </div>
+
+        <div className="relative flex items-end justify-center pb-12 sm:pb-16">
+          {/* Left phone */}
+          <div className="hidden sm:block relative z-0"
+            style={{ transform: "rotate(-8deg) translateY(40px) translateX(8px)", transformOrigin: "bottom center" }}>
+            <div className="scale-[1.28] opacity-75">
+              <PhoneMockup size="sm" src={heroScreens.left} alt="ChinaReady onboarding screen" />
+            </div>
           </div>
-          {/* Center phone - main */}
-          <div className="z-10">
-            <PhoneMockup
-            size="lg"
-            src={heroScreens.center}
-            alt="ChinaReady readiness dashboard"
-          />
+
+          {/* Center phone */}
+          <div className="relative z-10 scale-[1.14]">
+            <PhoneMockup size="lg" src={heroScreens.center} alt="ChinaReady readiness dashboard" />
           </div>
-          {/* Right phone - tilted */}
-          <div className="hidden sm:block rotate-6 translate-y-8 -translate-x-4 z-0 opacity-90">
-            <PhoneMockup
-              size="sm"
-              src={heroScreens.right}
-              alt="ChinaReady transport setup guide"
-            />
+
+          {/* Right phone */}
+          <div className="hidden sm:block relative z-0"
+            style={{ transform: "rotate(8deg) translateY(40px) translateX(-8px)", transformOrigin: "bottom center" }}>
+            <div className="scale-[1.28] opacity-75">
+              <PhoneMockup size="sm" src={heroScreens.right} alt="ChinaReady transport setup guide" />
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Fade to gray */}
-      <div className="h-24 bg-gradient-to-b from-white to-gray-50" />
     </section>
   );
 }
