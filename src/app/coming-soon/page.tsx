@@ -1,41 +1,67 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import WaitlistSection from "@/components/sections/WaitlistSection";
 import FeedbackSection from "@/components/sections/FeedbackSection";
+import { SITE_URL } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: "App Launch Waitlist",
+  description:
+    "Join the ChinaReady app waitlist and get notified when the iOS and Android apps launch.",
+  alternates: {
+    canonical: `${SITE_URL}/coming-soon`,
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function ComingSoonPage() {
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),_transparent_38%),linear-gradient(180deg,_#f8fafc_0%,_#ffffff_48%,_#eef2ff_100%)]">
-      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-        <section className="w-full overflow-hidden rounded-[2rem] border border-white/80 bg-white/85 p-8 shadow-[0_28px_90px_rgba(15,23,42,0.12)] backdrop-blur sm:p-12">
-          <div className="mb-6 inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-sm font-medium text-sky-700">
-            ChinaReady download
-          </div>
-          <h1 className="max-w-2xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-            Coming soon
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-            The iOS and Android apps are not publicly available yet. We are preparing the first release and polishing the onboarding flow.
-          </p>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
-            For now, you can keep exploring the preview and product walkthrough on the landing page.
-          </p>
+    <main className="min-h-screen bg-gray-50">
+      <div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32">
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/"
-              className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-slate-800"
-            >
-              Back to homepage
-            </Link>
+        {/* Header */}
+        <div className="mb-14 text-center">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+            <span className="text-xs font-semibold text-gray-500">App in development</span>
+          </div>
+          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+            The app is coming soon
+          </h1>
+          <p className="mt-4 text-base leading-relaxed text-gray-500 max-w-md mx-auto">
+            The website is live today. Leave your email and we will notify you once iOS and Android downloads open.
+          </p>
+          <div className="mt-8 flex items-center justify-center gap-3">
             <Link
               href="/preview"
-              className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50"
+              className="inline-flex items-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800"
             >
-              View app preview
+              Try the web preview
+            </Link>
+            <Link
+              href="/"
+              className="inline-flex items-center rounded-full border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:border-gray-300"
+            >
+              Back to home
             </Link>
           </div>
+        </div>
 
-          <FeedbackSection />
-        </section>
+        {/* Forms */}
+        <div className="space-y-4">
+          <WaitlistSection
+            source="coming_soon"
+            compact
+            eyebrow="App waitlist"
+            title="Get notified when the app launches"
+            description=""
+          />
+          <FeedbackSection source="coming_soon" compact />
+        </div>
+
       </div>
     </main>
   );

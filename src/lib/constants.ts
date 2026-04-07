@@ -1,10 +1,14 @@
-export const DOWNLOAD_PATH = "/coming-soon";
+export const SITE_URL = "https://chinaready.org";
+export const PREVIEW_PATH = "/preview";
+export const WAITLIST_PATH = "/#waitlist";
+export const DOWNLOAD_PATH = WAITLIST_PATH;
 
 export const NAV_LINKS = [
   { label: "Features", href: "/#features" },
   { label: "Preview", href: "/#preview" },
   { label: "How It Works", href: "/#how-it-works" },
-  { label: "Download", href: DOWNLOAD_PATH },
+  { label: "Guides", href: "/guides" },
+  { label: "App Launch", href: WAITLIST_PATH },
 ];
 
 export type Feature = {
@@ -118,5 +122,5 @@ export const STEPS: Step[] = [
   },
 ];
 
-export const APP_STORE_URL = DOWNLOAD_PATH;
-export const GOOGLE_PLAY_URL = DOWNLOAD_PATH;
+export const APP_STORE_URL = WAITLIST_PATH;
+export const GOOGLE_PLAY_URL = WAITLIST_PATH;
