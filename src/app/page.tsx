@@ -8,7 +8,6 @@ import HowItWorks from "@/components/sections/HowItWorks";
 import GuidesPreview from "@/components/sections/GuidesPreview";
 import Faq from "@/components/sections/Faq";
 import FeedbackSection from "@/components/sections/FeedbackSection";
-import WaitlistSection from "@/components/sections/WaitlistSection";
 import { SITE_URL } from "@/lib/constants";
 import { faqs } from "@/lib/faqs";
 
@@ -73,27 +72,17 @@ export default function Home() {
       <HowItWorks />
       <GuidesPreview />
       <Faq />
-      <section id="waitlist" className="bg-[#0f172a] py-20 lg:py-28">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#0f172a] py-20 lg:py-28">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <h2 className="text-2xl font-extrabold text-white sm:text-3xl">Stay in the loop</h2>
-            <p className="mt-2 text-sm text-slate-400">Join the waitlist or share what we should improve.</p>
+            <h2 className="text-2xl font-extrabold text-white sm:text-3xl">Share your feedback</h2>
+            <p className="mt-2 text-sm text-slate-400">Tell us what to improve — we read every message.</p>
           </div>
-          <div className="grid gap-4 lg:grid-cols-2">
-            <WaitlistSection
-              source="homepage_waitlist"
-              compact
-              className="mt-0"
-              eyebrow="App waitlist"
-              title="Get notified when the app launches"
-              description=""
-            />
-            <FeedbackSection
-              source="homepage"
-              compact
-              className="mt-0"
-            />
-          </div>
+          <FeedbackSection
+            source="homepage"
+            compact
+            className="mt-0"
+          />
         </div>
       </section>
     </>

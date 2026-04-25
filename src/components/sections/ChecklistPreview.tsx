@@ -1464,6 +1464,7 @@ export default function ChecklistPreview() {
   };
 
   const activeTaskCount = countDone(activeCategoryData.items);
+  const [activeFeature, setActiveFeature] = useState(0);
   const featureCards = [
     {
       label: "Menu Translator",
@@ -1585,6 +1586,82 @@ export default function ChecklistPreview() {
               </div>
             </div>
           </div>
+        </div>
+      );
+    }
+
+    if (featureIndex === 3) {
+      return (
+        <div className="flex h-full flex-col gap-3">
+          <p className={`leading-relaxed text-slate-500 ${compact ? "line-clamp-2 text-xs" : "text-sm"}`}>
+            Enter your passport country and stops — get an instant answer on whether your route qualifies for China&apos;s 240-hour visa-free transit.
+          </p>
+
+          <div className={`rounded-[1.2rem] bg-slate-50 ring-1 ring-slate-200 ${compact ? "p-3" : "p-4"} space-y-2`}>
+            <p className={`font-semibold text-slate-700 ${compact ? "text-xs" : "text-sm"}`}>Example itinerary</p>
+            {[
+              { leg: "New York → Beijing", tag: "Entry", tagColor: "bg-sky-50 text-sky-700 ring-sky-100" },
+              { leg: "Beijing → Tokyo", tag: "Exit", tagColor: "bg-slate-100 text-slate-500 ring-slate-200" },
+            ].map((row) => (
+              <div key={row.leg} className={`flex items-center justify-between rounded-xl bg-white px-3 py-2.5 ring-1 ring-slate-200 ${compact ? "text-xs" : "text-sm"}`}>
+                <span className="text-slate-600">{row.leg}</span>
+                <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ${row.tagColor}`}>{row.tag}</span>
+              </div>
+            ))}
+            <div className={`flex items-center gap-2 rounded-xl bg-emerald-50 px-3 py-2.5 ring-1 ring-emerald-100 ${compact ? "text-xs" : "text-sm"}`}>
+              <Check className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
+              <span className="font-semibold text-emerald-700">Qualifies — up to 10 days</span>
+            </div>
+          </div>
+
+          <div className={`rounded-[1.2rem] bg-slate-50 ring-1 ring-slate-200 ${compact ? "p-3" : "p-4"} space-y-2`}>
+            <p className={`font-semibold text-slate-700 ${compact ? "text-xs" : "text-sm"}`}>Also checks</p>
+            {["55 eligible nationalities", "65 approved entry ports", "7 restricted regions (Tibet etc.)"].map((item) => (
+              <div key={item} className={`flex items-center gap-2 text-slate-500 ${compact ? "text-[11px]" : "text-xs"}`}>
+                <Check className="h-3 w-3 shrink-0 text-emerald-500" />
+                {item}
+              </div>
+            ))}
+          </div>
+
+          <Link
+            href="/transit-checker"
+            className={`inline-flex items-center gap-1 font-medium text-[#137fec] transition-colors hover:text-[#0f6fd1] ${compact ? "text-xs" : "text-sm"}`}
+          >
+            Try the free tool <ChevronRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      );
+    }
+
+    if (featureIndex === 4) {
+      return (
+        <div className="flex h-full flex-col gap-3">
+          <p className={`leading-relaxed text-slate-500 ${compact ? "line-clamp-2 text-xs" : "text-sm"}`}>
+            Answer 5 questions — find out whether you need an eSIM, a VPN, or both for your specific situation.
+          </p>
+          <div className={`rounded-[1.2rem] bg-slate-50 ring-1 ring-slate-200 ${compact ? "p-3" : "p-4"} space-y-2`}>
+            {[
+              { q: "Going to China for?", a: "Tourist / short trip", dot: "bg-slate-300" },
+              { q: "Using hotel Wi-Fi?", a: "No — mostly on phone data", dot: "bg-slate-300" },
+              { q: "Need ChatGPT?", a: "No", dot: "bg-slate-300" },
+            ].map((row) => (
+              <div key={row.q} className={`flex items-center justify-between rounded-xl bg-white px-3 py-2 ring-1 ring-slate-200 ${compact ? "text-xs" : "text-sm"}`}>
+                <span className="text-slate-400">{row.q}</span>
+                <span className="text-slate-700 font-medium">{row.a}</span>
+              </div>
+            ))}
+            <div className={`flex items-center gap-2 rounded-xl bg-emerald-50 px-3 py-2.5 ring-1 ring-emerald-100 ${compact ? "text-xs" : "text-sm"}`}>
+              <Check className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
+              <span className="font-semibold text-emerald-700">eSIM only — no VPN needed</span>
+            </div>
+          </div>
+          <Link
+            href="/esim-vpn-checker"
+            className={`inline-flex items-center gap-1 font-medium text-[#137fec] transition-colors hover:text-[#0f6fd1] ${compact ? "text-xs" : "text-sm"}`}
+          >
+            Try the free tool <ChevronRight className="h-3.5 w-3.5" />
+          </Link>
         </div>
       );
     }
@@ -1769,6 +1846,14 @@ export default function ChecklistPreview() {
                     <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-400">
                       {activeCategoryData.subtitle}
                     </p>
+                    {activeCategoryData.id === "Internet" && (
+                      <Link
+                        href="/esim-vpn-checker"
+                        className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-[#137fec] hover:text-[#0f6fd1] transition-colors"
+                      >
+                        Not sure if you need a VPN? Use the eSIM vs VPN checker →
+                      </Link>
+                    )}
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="rounded-full bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-500 ring-1 ring-slate-200">
@@ -1995,46 +2080,107 @@ export default function ChecklistPreview() {
               More in the app
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-slate-500">
-              Menu translator, traveler community, and offline quick-fixes.{" "}
+              Menu translator, traveler community, visa checker, and offline quick-fixes.{" "}
               <Link
-                href="/#waitlist"
+                href="https://apps.apple.com/us/app/china-ready/id6761592022"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="font-medium text-[#137fec] transition-colors hover:text-[#0f6fd1]"
               >
-                Join the waitlist.
+                Download the app.
               </Link>
             </p>
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-3">
-            {featureCards.map((feature, index) => {
-              const FeatureIcon = feature.icon;
+          {/* Accordion + visual panel */}
+          <div className="rounded-[1.85rem] border border-white/90 bg-white shadow-[0_28px_70px_rgba(15,23,42,0.12)] overflow-hidden">
+            <div className="flex flex-col lg:flex-row">
 
-              return (
-                <section
-                  key={feature.label}
-                  className={`${featureCardHeight} rounded-[1.85rem] border border-white/90 bg-white p-5 shadow-[0_28px_70px_rgba(15,23,42,0.12)] backdrop-blur sm:p-6`}
-                >
-                  <div className="flex h-full flex-col overflow-hidden">
-                    <div className="flex min-h-[72px] items-start justify-between gap-4">
-                      <div className="flex items-center gap-3">
-                        <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${feature.iconClassName}`}>
-                          <FeatureIcon className="h-5 w-5" />
+              {/* Left: visual preview — order: visa(0→3), esim-vpn(1→4), menu(2→0), community(3→1), fix(4→2) */}
+              <div className="lg:w-[45%] shrink-0 bg-slate-50 border-b border-slate-100 lg:border-b-0 lg:border-r lg:border-slate-100 p-6 flex items-center justify-center min-h-[320px]">
+                <div className="w-full max-w-sm">
+                  {renderFeatureBody([3, 4, 0, 1, 2][activeFeature])}
+                </div>
+              </div>
+
+              {/* Right: accordion */}
+              <div className="flex-1 divide-y divide-slate-100">
+                {[
+                  {
+                    label: "Visa Checker",
+                    icon: TrainFront,
+                    iconClassName: "bg-emerald-50 text-emerald-600",
+                    description: "Enter your passport country and stops — instant answer on whether your route qualifies for China's 240-hour visa-free transit.",
+                    cta: { label: "Try the free tool", href: "/transit-checker" },
+                  },
+                  {
+                    label: "eSIM vs VPN",
+                    icon: Wifi,
+                    iconClassName: "bg-sky-50 text-sky-500",
+                    description: "Answer 5 questions — find out whether you need an eSIM, a VPN, or both for your specific situation.",
+                    cta: { label: "Try the free tool", href: "/esim-vpn-checker" },
+                  },
+                  {
+                    label: "Menu Translator",
+                    icon: UtensilsCrossed,
+                    iconClassName: "bg-rose-50 text-rose-500",
+                    description: "Open the camera and quickly check ingredients, allergens, and spice level before you order.",
+                    cta: null,
+                  },
+                  {
+                    label: "Traveler Community",
+                    icon: MessageSquare,
+                    iconClassName: "bg-sky-50 text-sky-500",
+                    description: "Browse quick traveler posts across different cities — real tips from people already on the ground.",
+                    cta: null,
+                  },
+                  {
+                    label: "Fix",
+                    icon: Wrench,
+                    iconClassName: "bg-blue-50 text-[#137fec]",
+                    description: "Jump straight into the most common fixes after you land — payments, VPN, or a blocked app.",
+                    cta: null,
+                  },
+                ].map((item, index) => {
+                  const ItemIcon = item.icon;
+                  const isActive = activeFeature === index;
+                  return (
+                    <button
+                      key={item.label}
+                      type="button"
+                      onClick={() => setActiveFeature(index)}
+                      className={`w-full text-left px-6 py-5 transition-colors ${isActive ? "bg-slate-50/80" : "hover:bg-slate-50/50"}`}
+                    >
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${item.iconClassName}`}>
+                            <ItemIcon className="h-4 w-4" />
+                          </div>
+                          <span className={`text-sm font-semibold ${isActive ? "text-slate-900" : "text-slate-600"}`}>
+                            {item.label}
+                          </span>
                         </div>
-                        <div>
-                          <p className="text-sm font-medium text-slate-500">{feature.label}</p>
+                        <ChevronRight className={`h-4 w-4 shrink-0 text-slate-400 transition-transform ${isActive ? "rotate-90" : ""}`} />
+                      </div>
+                      {isActive && (
+                        <div className="mt-3 pl-12">
+                          <p className="text-sm text-slate-500 leading-relaxed">{item.description}</p>
+                          {item.cta && (
+                            <Link
+                              href={item.cta.href}
+                              onClick={(e) => e.stopPropagation()}
+                              className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-[#137fec] hover:text-[#0f6fd1] transition-colors"
+                            >
+                              {item.cta.label} <ChevronRight className="h-3.5 w-3.5" />
+                            </Link>
+                          )}
                         </div>
-                      </div>
-                      <div className="rounded-full bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-400 ring-1 ring-slate-200">
-                        {index + 1}
-                      </div>
-                    </div>
-                    <div className="mt-3 min-h-0 flex-1 overflow-hidden">
-                      {renderFeatureBody(index)}
-                    </div>
-                  </div>
-                </section>
-              );
-            })}
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
         </div>

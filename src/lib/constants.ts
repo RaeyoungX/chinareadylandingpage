@@ -1,6 +1,6 @@
 export const SITE_URL = "https://chinaready.org";
 export const PREVIEW_PATH = "/preview";
-export const WAITLIST_PATH = "/#waitlist";
+export const WAITLIST_PATH = "https://apps.apple.com/us/app/china-ready/id6761592022";
 export const DOWNLOAD_PATH = WAITLIST_PATH;
 
 export const NAV_LINKS = [
@@ -8,7 +8,7 @@ export const NAV_LINKS = [
   { label: "Preview", href: "/#preview" },
   { label: "How It Works", href: "/#how-it-works" },
   { label: "Guides", href: "/guides" },
-  { label: "App Launch", href: WAITLIST_PATH },
+  { label: "Download App", href: "https://apps.apple.com/us/app/china-ready/id6761592022" },
 ];
 
 export type Feature = {
@@ -122,5 +122,5 @@ export const STEPS: Step[] = [
   },
 ];
 
-export const APP_STORE_URL = WAITLIST_PATH;
-export const GOOGLE_PLAY_URL = WAITLIST_PATH;
+export const APP_STORE_URL = "https://apps.apple.com/us/app/china-ready/id6761592022";
+export const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.chinaready.app";

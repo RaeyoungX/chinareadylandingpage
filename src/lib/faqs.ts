@@ -32,7 +32,7 @@ export const faqs = [
     a: "Yes. Payments, connectivity, and navigation matter whether you are there for a conference or a semester. The checklist covers practical needs that apply across all trip types.",
   },
   {
-    q: "When will the iOS and Android apps launch?",
-    a: "The app is in development. Join the waitlist and we will send you one email when downloads open — no spam, no newsletters.",
+    q: "Where can I download the iOS and Android apps?",
+    a: "The app is live now. Download on the App Store or Google Play — search for ChinaReady.",
   },
 ] as const;

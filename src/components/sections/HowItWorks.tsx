@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PREVIEW_PATH, WAITLIST_PATH } from "@/lib/constants";
+import { PREVIEW_PATH, APP_STORE_URL } from "@/lib/constants";
 import {
   ClipboardList,
   BookOpen,
@@ -117,12 +117,14 @@ export default function HowItWorks() {
           >
             Explore Preview
           </Link>
-          <Link
-            href={WAITLIST_PATH}
+          <a
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 text-sm font-medium rounded-full border border-gray-200 hover:border-gray-300 transition-all"
           >
-            Join Waitlist
-          </Link>
+            Download App
+          </a>
         </div>
       </div>
     </section>

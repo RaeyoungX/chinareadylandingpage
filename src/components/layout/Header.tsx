@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { PREVIEW_PATH, WAITLIST_PATH, NAV_LINKS } from "@/lib/constants";
+import { PREVIEW_PATH, APP_STORE_URL, NAV_LINKS } from "@/lib/constants";
 import LogoMark from "@/components/ui/LogoMark";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -25,6 +26,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={() => link.href === "/guides" && trackEvent("nav_guides_click")}
                 className="rounded-full px-4 py-2 text-sm font-medium text-slate-500 transition-colors hover:text-slate-950"
               >
                 {link.label}
@@ -33,12 +35,14 @@ export default function Header() {
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
-            <Link
-              href={WAITLIST_PATH}
+            <a
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
             >
-              App launch
-            </Link>
+              Download App
+            </a>
             <Link
               href={PREVIEW_PATH}
               className="inline-flex items-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white shadow-[0_14px_32px_rgba(15,23,42,0.12)] transition-all hover:-translate-y-0.5 hover:bg-slate-800"
@@ -63,19 +67,24 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false);
+                    if (link.href === "/guides") trackEvent("nav_guides_click");
+                  }}
                   className="rounded-xl px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-900"
                 >
                   {link.label}
                 </Link>
               ))}
               <div className="mt-2 grid gap-2 px-1">
-                <Link
-                  href={WAITLIST_PATH}
+                <a
+                  href={APP_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-center rounded-full border border-slate-200 px-5 py-2.5 text-sm font-medium text-slate-700"
                 >
-                  App launch
-                </Link>
+                  Download App
+                </a>
                 <Link
                   href={PREVIEW_PATH}
                   className="flex w-full items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white"

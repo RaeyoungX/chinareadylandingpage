@@ -207,7 +207,7 @@ export default function FeedbackSection({
 
             <div className="rounded-[1.75rem] border border-slate-200/80 bg-white/92 p-5 shadow-[0_16px_40px_rgba(226,232,240,0.55)]">
               <p className="text-sm leading-7 text-slate-600">
-                Want the app launch email instead? Use the waitlist form. Use this form when you want to tell us what to improve before launch.
+                Use this form to tell us what to improve. We read every message.
               </p>
             </div>
           </div>

@@ -65,7 +65,7 @@ export const guides: Guide[] = [
     coverImage: "/images/guides/vpn-china-setup-guide.png",
     related: ["china-esim-guide", "china-travel-checklist", "how-to-set-up-alipay-wechat-pay-as-tourist"],
     faqs: [
-      { q: "Which VPN works best in China in 2026?", a: "Based on real traveller reports from Reddit communities, Astrill is the most consistently reliable VPN for China. Let's VPN and Shadowfly are solid alternatives. ExpressVPN has become increasingly unreliable since 2024." },
+      { q: "Which VPN works best in China in 2026?", a: "Based on real traveller reports from Reddit communities, Astrill is the most consistently reliable VPN for China. LetsVPN and Shadowfly are solid alternatives." },
       { q: "Can I download a VPN after arriving in China?", a: "No. VPN apps are not available on the App Store or Google Play inside China, and VPN providers' websites are blocked. You must install and test your VPN before departure." },
       { q: "Does a VPN slow down internet speed in China?", a: "Yes, slightly. Connecting through an overseas server adds latency. For most activities — browsing, messaging, video calls — the speed is acceptable. Connect to nearby servers (Hong Kong, Japan, Singapore) for best performance." },
     ],

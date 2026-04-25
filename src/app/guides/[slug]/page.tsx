@@ -4,6 +4,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { SITE_URL } from "@/lib/constants";
 import { guides, categoryLabels, categoryColors } from "@/lib/guides";
+import ScrollDepthTracker from "@/components/tools/ScrollDepthTracker";
+import GuideCtaButton from "@/components/tools/GuideCtaButton";
 
 export const dynamicParams = false;
 
@@ -120,6 +122,7 @@ export default async function GuidePage({
 
   return (
     <main className="bg-white min-h-screen">
+      <ScrollDepthTracker slug={slug} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {faqJsonLd && (
@@ -224,12 +227,7 @@ export default async function GuidePage({
           <p className="mt-3 text-slate-400 max-w-md mx-auto">
             The app guides you through every step — payments, VPN, navigation, documents — so nothing gets missed.
           </p>
-          <Link
-            href="/#waitlist"
-            className="mt-6 inline-flex items-center rounded-full bg-white px-7 py-3 text-sm font-semibold text-slate-900 shadow-lg hover:bg-slate-100 transition"
-          >
-            Join the waitlist
-          </Link>
+          <GuideCtaButton slug={slug} />
         </div>
       </div>
     </main>

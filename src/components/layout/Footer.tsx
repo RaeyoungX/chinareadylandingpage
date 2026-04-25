@@ -1,6 +1,6 @@
 import Link from "next/link";
 import LogoMark from "@/components/ui/LogoMark";
-import { PREVIEW_PATH, WAITLIST_PATH } from "@/lib/constants";
+import { PREVIEW_PATH, APP_STORE_URL, GOOGLE_PLAY_URL } from "@/lib/constants";
 
 export default function Footer() {
   return (
@@ -39,6 +39,8 @@ export default function Footer() {
               <li><Link href="/guides/vpn-china-setup-guide" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">VPN for China</Link></li>
               <li><Link href="/guides/china-visa-free-countries-2026" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">Visa-Free Entry 2026</Link></li>
               <li><Link href="/guides/china-esim-guide" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">China eSIM Guide</Link></li>
+              <li><Link href="/transit-checker" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">240h Transit Checker</Link></li>
+              <li><Link href="/esim-vpn-checker" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">eSIM vs VPN Checker</Link></li>
             </ul>
           </div>
 
@@ -53,10 +55,11 @@ export default function Footer() {
 
           {/* Download */}
           <div>
-            <h4 className="text-xs font-semibold text-gray-400 mb-3">Launch</h4>
+            <h4 className="text-xs font-semibold text-gray-400 mb-3">Download</h4>
             <ul className="space-y-2">
               <li><Link href={PREVIEW_PATH} className="text-gray-500 hover:text-gray-300 text-xs transition-colors">Try Web Preview</Link></li>
-              <li><Link href={WAITLIST_PATH} className="text-gray-500 hover:text-gray-300 text-xs transition-colors">Join App Waitlist</Link></li>
+              <li><a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">Download on App Store</a></li>
+              <li><a href={GOOGLE_PLAY_URL} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">Get it on Google Play</a></li>
             </ul>
           </div>
         </div>

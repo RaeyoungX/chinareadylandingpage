@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PhoneMockup from "@/components/ui/PhoneMockup";
-import { PREVIEW_PATH, WAITLIST_PATH } from "@/lib/constants";
+import { PREVIEW_PATH, APP_STORE_URL, GOOGLE_PLAY_URL } from "@/lib/constants";
 
 const heroScreens = {
   left: "/images/app-screenshot-hero.png",
@@ -16,11 +16,11 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             <span className="text-xs font-semibold tracking-wide text-slate-500">
-              Website preview live
+              Now available
             </span>
             <span className="h-3.5 w-px bg-slate-200" />
             <span className="text-xs font-semibold text-slate-400">
-              App coming soon
+              App Store &amp; Google Play
             </span>
           </div>
         </div>
@@ -31,31 +31,29 @@ export default function Hero() {
           </h1>
         </div>
 
-        <div className="mx-auto mb-3 max-w-xl text-center">
+        <div className="mx-auto mb-10 max-w-xl text-center">
           <p className="text-lg leading-relaxed text-slate-500 sm:text-xl">
             Built from official sources and real traveler experience.
           </p>
         </div>
 
-        <div className="mx-auto mb-10 max-w-xl text-center">
-          <p className="text-sm text-slate-400">
-            Use the website now. The app is coming soon.
-          </p>
-        </div>
-
-        <div className="mb-16 flex flex-col items-center justify-center gap-4 sm:mb-20">
-          <Link
-            href={PREVIEW_PATH}
+        <div className="mb-16 flex flex-col items-center justify-center gap-3 sm:mb-20 sm:flex-row">
+          <a
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center rounded-full bg-slate-950 px-7 py-3.5 text-sm font-medium text-white shadow-[0_18px_40px_rgba(15,23,42,0.16)] transition-all hover:-translate-y-0.5 hover:bg-slate-800"
           >
-            Try the Web Preview
-          </Link>
-          <Link
-            href={WAITLIST_PATH}
-            className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
+            Download on App Store
+          </a>
+          <a
+            href={GOOGLE_PLAY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-full border border-slate-200 bg-white px-5 py-3.5 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
           >
-            Join the waitlist
-          </Link>
+            Get it on Google Play
+          </a>
         </div>
 
         <div className="relative flex items-end justify-center pb-12 sm:pb-16">
